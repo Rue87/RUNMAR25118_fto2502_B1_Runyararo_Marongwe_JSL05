@@ -1,4 +1,12 @@
 import { initialTasks } from "./initialData.js";
+//---Local Storage Helpers---
+function saveTasksToLocalStorage(tasks) {
+  localStorage.setItem("kanbanTasks", JSON.stringify(tasks));
+}
+function getTasksFromLocalStorage() {
+  const taskJson = localStorage.getItem("kanbanTasks");
+  return taskJson ? JSON.parse(taskJson) : [];
+}
 
 /**
  * Creates a single task DOM element.
@@ -53,6 +61,7 @@ function renderTasks(tasks) {
       container.appendChild(taskElement);
     }
   });
+  saveTasksToLocalStorage(tasks);
 }
 
 /**
@@ -88,10 +97,16 @@ function setupModalCloseHandler() {
  * Initializes the task board and modal handlers.
  */
 function initTaskBoard() {
+  let savedTasks = getTasksFromLocalStorage();
+  
+  if (!savedTasks || savedTasks.length === 0) {
+    savedTasks = initialTasks;
+    saveTasksToLocalStorage(initialTasks);
+  }
   clearExistingTasks();
-  renderTasks(initialTasks);
+  renderTasks(savedTasks);
   setupModalCloseHandler();
-}
+} 
 
 // Wait until DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initTaskBoard);

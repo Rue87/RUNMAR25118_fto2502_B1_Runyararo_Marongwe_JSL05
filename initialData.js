@@ -22,7 +22,7 @@ export const initialTasks = [
   },
 
   {
-    id: 11,
+    id: 4,
     title: "Learn Data Structures and Algorithms 📚",
     description:
       "Study fundamental data structures and algorithms to solve coding problems efficiently",
@@ -30,7 +30,7 @@ export const initialTasks = [
     board: "Launch Career",
   },
   {
-    id: 12,
+    id: 5,
     title: "Contribute to Open Source Projects 🌐",
     description:
       "Gain practical experience and collaborate with others in the software development community",
@@ -38,7 +38,7 @@ export const initialTasks = [
     board: "Launch Career",
   },
   {
-    id: 13,
+    id: 6,
     title: "Build Portfolio Projects 🛠️",
     description:
       "Create a portfolio showcasing your skills and projects to potential employers",

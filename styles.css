@@ -115,6 +115,22 @@ header {
   align-items: center;
 }
 
+.header-board-name{
+  display:flex;
+  flex-direction: row;
+  column-gap: 550px;
+}
+.add-task-btn{
+  width: 164px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: #635FC7;
+  color: #fff;
+  border: none;
+  size: 15px;
+  font-weight: 700;
+  }
+
 .logo-mobile {
   display: none; /* Hidden on desktop; shown on smaller screens */
 }
