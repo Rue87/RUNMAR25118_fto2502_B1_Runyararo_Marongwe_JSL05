@@ -117,7 +117,60 @@ function initTaskBoard() {
   clearExistingTasks();
   renderTasks(savedTasks);
   setupModalCloseHandler();
+  setupAddTaskModalCloseHandler(); 
+  
 } 
+function setupAddTaskModalCloseHandler() {
+  const modal = document.getElementById("add-task-modal");
+  const closeBtn = document.getElementById("close-add-task-btn");
 
+  if (closeBtn && modal) {
+    closeBtn.addEventListener("click", () => {
+      modal.close();
+    });
+  }
+}
+/**
+ * Handles the submission of the Add Task form.
+ * Adds new task to localStorage and updates the UI.
+ */
+function setupAddTaskFormHandler() {
+  const addTaskForm = document.getElementById("add-task-form");
+  const addTaskModal = document.getElementById("add-task-modal");
+
+   // Use explicit element IDs
+  const titleInput = document.getElementById("new-task-title");
+  const descInput = document.getElementById("new-task-desc");
+  const statusSelect = document.getElementById("new-task-status");
+
+  addTaskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    // Get existing tasks from localStorage
+    const tasks = getTasksFromLocalStorage();
+
+    const newTask = {
+      id: Date.now(),
+      title: titleInput.value.trim(),
+      description: descInput.value.trim(),
+      status: statusSelect.value,
+    };
+
+    // Validate required field title (should be handled by HTML 'required', but double-check)
+    if (!newTask.title) {
+      alert("Please enter a task title.");
+      return;
+    }
+
+    tasks.push(newTask);
+    saveTasksToLocalStorage(tasks);
+    clearExistingTasks();
+    renderTasks(tasks);
+
+    // Reset and close modal
+    addTaskForm.reset();
+    addTaskModal.close();
+  });
+}
 // Wait until DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initTaskBoard);
