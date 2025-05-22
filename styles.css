@@ -115,21 +115,21 @@ header {
   align-items: center;
 }
 
-.header-board-name{
-  display:flex;
+.header-board-name {
+  display: flex;
   flex-direction: row;
   column-gap: 550px;
 }
-.add-task-btn{
+.add-task-btn {
   width: 164px;
   height: 48px;
   border-radius: 24px;
-  background-color: #635FC7;
+  background-color: #635fc7;
   color: #fff;
   border: none;
   size: 15px;
   font-weight: 700;
-  }
+}
 
 .logo-mobile {
   display: none; /* Hidden on desktop; shown on smaller screens */
@@ -231,7 +231,7 @@ h2 {
    Modal Styles
 ================ */
 /* Remove default dialog styles */
-dialog {
+/*dialog {
   position: fixed;
 
   border: none;
@@ -241,21 +241,64 @@ dialog {
 }
 
 /* Style the modal box */
-#task-modal::backdrop {
+#task-modal::backdrop,
+#add-task-modal::backdrop {
   background: rgba(0, 0, 0, 0.3);
 }
 
-#task-modal {
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
+#task-modal,
+#add-task-modal {
+  position: fixed;
+  top: 130px;
+  left: 511px;
+  border: none;
   border-radius: 8px;
-  width: 90%;
-  max-width: 600px;
+  width: 497px;
+  height: 430px;
+  max-width: 800px;
   padding: 24px;
+  margin: 0;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure modal is on top */
   /*font-family: "Plus Jakarta Sans", sans-serif;*/
+}
+
+#add-task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 500px; /* This centers all children horizontally */
+}
+/*labels*/
+#add-task-form label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #828fa3;
+  margin-bottom: 4px;
+}
+#add-task-form input,
+#add-task-form textarea,
+#add-task-form select {
+  width: 100%;
+}
+
+
+#add-task-form button[type="submit"] {
+  background-color:#635FC7;
+  width: 424px;
+  height: 40px;
+  border-radius: 20px;
+  color: #fff;
+  margin-top:24px;
+  size: 13px;
+  font-weight: 700;
+  border: none;
+  line-height: 23px;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-right: 31px;
+
 }
 
 /* Header */

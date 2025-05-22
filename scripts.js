@@ -1,9 +1,20 @@
 import { initialTasks } from "./initialData.js";
 //---Local Storage Helpers---
-function saveTasksToLocalStorage(tasks) {
+
+document.addEventListener("DOMContentLoaded", () => {
+  const addTaskBtn = document.getElementById("open-add-task-modal");
+  if (addTaskBtn) {
+    addTaskBtn.addEventListener("click", () => {
+      const modal = document.getElementById("add-task-modal");
+      if (modal) modal.showModal();
+    })
+  }
+  });
+
+export function saveTasksToLocalStorage(tasks) {
   localStorage.setItem("kanbanTasks", JSON.stringify(tasks));
 }
-function getTasksFromLocalStorage() {
+export function getTasksFromLocalStorage() {
   const taskJson = localStorage.getItem("kanbanTasks");
   return taskJson ? JSON.parse(taskJson) : [];
 }

@@ -28,7 +28,6 @@
       <div class="boards-nav-links-div" id="boards-nav-links-div">
         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
         <button class="board-btn">Launch Career</button>
-          
       </div>
     </nav>
 
@@ -43,9 +42,10 @@
           />
           <h2 class="header-board-name" id="header-board-name">
             Launch Career
-            <button class="add-task-btn">＋ Add New Task</button>
+            <button class="add-task-btn" id="open-add-task-modal">
+              ＋ Add New Task
+            </button>
           </h2>
-
         </div>
       </header>
 
@@ -103,6 +103,32 @@
           <option value="doing">doing</option>
           <option value="done">done</option>
         </select>
+      </form>
+    </dialog>
+    <!-- Modal: Displays the form to add a new task -->
+    <dialog id="add-task-modal">
+      <form method="dialog" id="add-task-form">
+        <div class="modal-header">
+          <h3>Add New Task</h3>
+          <button type="button" class="close-btn" id="close-add-task-btn">
+            &times;
+          </button>
+        </div>
+
+        <label for="new-task-title">Title</label>
+        <input type="text" id="new-task-title" name="title" required />
+
+        <label for="new-task-desc">Description</label>
+        <textarea id="new-task-desc" name="description" rows="4"></textarea>
+
+        <label for="new-task-status">Status</label>
+        <select id="new-task-status" name="status" required>
+          <option value="todo">todo</option>
+          <option value="doing">doing</option>
+          <option value="done">done</option>
+        </select>
+
+        <button type="submit" id="create-task-btn">Create Task</button>
       </form>
     </dialog>
   </body>
