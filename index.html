@@ -40,12 +40,14 @@
             alt="logo-mobile"
             class="logo-mobile"
           />
-          <h2 class="header-board-name" id="header-board-name">
+          <div class="header-logo-task-button">
+            <h2 class="header-board-name" id="header-board-name">
             Launch Career
-            <button class="add-task-btn" id="open-add-task-modal">
+          </h2>
+          <button class="add-task-btn" id="open-add-task-modal">
               ＋ Add New Task
             </button>
-          </h2>
+          </div>
         </div>
       </header>
 
@@ -122,7 +124,7 @@
         <textarea id="new-task-desc" name="description" rows="4"></textarea>
 
         <label for="new-task-status">Status</label>
-        <select id="new-task-status" name="status" required>
+        <select id="new-task-status" name="status" required class="rounded-select">
           <option value="todo">todo</option>
           <option value="doing">doing</option>
           <option value="done">done</option>

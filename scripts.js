@@ -1,31 +1,50 @@
 import { initialTasks } from "./initialData.js";
-//---Local Storage Helpers---
 
+// ==============================
+// DOM Ready Handler
+// ==============================
+
+/**
+ * Show the Add Task modal when the "+Add Task" button is clicked.
+ * Waits for DOM content to fully load before attaching event listener
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const addTaskBtn = document.getElementById("open-add-task-modal");
   if (addTaskBtn) {
     addTaskBtn.addEventListener("click", () => {
       const modal = document.getElementById("add-task-modal");
       if (modal) modal.showModal();
-    })
+    });
   }
-  });
+});
 
+// ==============================
+// Local Storage Utilities
+// ==============================
+/**
+ * Save an array of tasks to localStorage.
+ * @param {Array<Object>} tasks-List of tasks to store.
+ */
 export function saveTasksToLocalStorage(tasks) {
   localStorage.setItem("kanbanTasks", JSON.stringify(tasks));
 }
+/**
+ * Get task data from localStorage.
+ * @returns {Array<Object>}The parsed task array, or an empty array if none exists.
+ */
 export function getTasksFromLocalStorage() {
   const taskJson = localStorage.getItem("kanbanTasks");
   return taskJson ? JSON.parse(taskJson) : [];
 }
 
+// ==============================
+// Task Rendering Logic
+// ==============================
+
 /**
- * Creates a single task DOM element.
- * @param {Object} task - Task data object.
- * @param {string} task.title - Title of the task.
- * @param {number} task.id - Unique task ID.
- * @param {string} task.status - Status column: 'todo', 'doing', or 'done'.
- * @returns {HTMLElement} The created task div element.
+ * Create a task element for display in the UI
+ * @param {object} task-The task object to render.
+ * @returns {HTMLElement} The constructed task DOM element.
  */
 function createTaskElement(task) {
   const taskDiv = document.createElement("div");
@@ -49,9 +68,8 @@ function getTaskContainerByStatus(status) {
   const column = document.querySelector(`.column-div[data-status="${status}"]`);
   return column ? column.querySelector(".tasks-container") : null;
 }
-
 /**
- * Clears all existing task-divs from all task containers.
+ * Clears all existing tasks-from UI
  */
 function clearExistingTasks() {
   document.querySelectorAll(".tasks-container").forEach((container) => {
@@ -75,6 +93,10 @@ function renderTasks(tasks) {
   saveTasksToLocalStorage(tasks);
 }
 
+// ==============================
+// Modal Handling
+// ==============================
+
 /**
  * Opens the modal dialog with pre-filled task details.
  * @param {Object} task - The task object to display in the modal.
@@ -93,7 +115,7 @@ function openTaskModal(task) {
 }
 
 /**
- * Sets up modal close behavior.
+ * Handle closing of the task modal.
  */
 function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
@@ -103,23 +125,7 @@ function setupModalCloseHandler() {
     modal.close();
   });
 }
-
-/**
- * Initializes the task board and modal handlers.
- */
-function initTaskBoard() {
-  let savedTasks = getTasksFromLocalStorage();
-  
-  if (!savedTasks || savedTasks.length === 0) {
-    savedTasks = initialTasks;
-    saveTasksToLocalStorage(initialTasks);
-  }
-  clearExistingTasks();
-  renderTasks(savedTasks);
-  setupModalCloseHandler();
-  setupAddTaskModalCloseHandler(); 
-  
-} 
+/** Handle closing of the Add Task modal */
 function setupAddTaskModalCloseHandler() {
   const modal = document.getElementById("add-task-modal");
   const closeBtn = document.getElementById("close-add-task-btn");
@@ -130,6 +136,27 @@ function setupAddTaskModalCloseHandler() {
     });
   }
 }
+// ==============================
+// Initialization & Form Handling
+// ==============================
+
+/**
+ * Initializes the task board and load tasks.
+ * * Loads tasks from localStorage or fallback to initialTasks.
+ */
+function initTaskBoard() {
+  let savedTasks = getTasksFromLocalStorage();
+
+  if (!savedTasks || savedTasks.length === 0) {
+    savedTasks = initialTasks;
+    saveTasksToLocalStorage(initialTasks);
+  }
+  clearExistingTasks();
+  renderTasks(savedTasks);
+  setupModalCloseHandler();
+  setupAddTaskModalCloseHandler();
+}
+
 /**
  * Handles the submission of the Add Task form.
  * Adds new task to localStorage and updates the UI.
@@ -138,7 +165,7 @@ function setupAddTaskFormHandler() {
   const addTaskForm = document.getElementById("add-task-form");
   const addTaskModal = document.getElementById("add-task-modal");
 
-   // Use explicit element IDs
+  // Use explicit element IDs
   const titleInput = document.getElementById("new-task-title");
   const descInput = document.getElementById("new-task-desc");
   const statusSelect = document.getElementById("new-task-status");
@@ -172,5 +199,11 @@ function setupAddTaskFormHandler() {
     addTaskModal.close();
   });
 }
-// Wait until DOM is fully loaded
+// Initialize board and form handler
 document.addEventListener("DOMContentLoaded", initTaskBoard);
+
+/**
+ * Enables the Add Task form handling.
+ */
+
+setupAddTaskFormHandler();
