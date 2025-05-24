@@ -1,50 +1,60 @@
-# JSL04 Challenge – Solution Code
+# Task Board with Local Storage Persistence and Task Creation
 
 ## Overview
 
-This solution refactors JSL03 by **removing all hard‑coded tasks from the HTML** and generating the board entirely through JavaScript. It also introduces a **modal dialog** that lets the user inspect (and later extend to edit) an individual task. The result is a cleaner, fully data‑driven task board that is easier to maintain and extend.
+This is a simple Kanban board web application for organizing tasks using status-based columns.The current implementation features a dynamic **Add New Task** modal that allows users to create new tasks with title, description,and status. The application saves tasks in the browser using localStorage ensuring persistence accross page reloads.
 
-## Learning goals
+## Features
 
-By studying the JSL04 solution you will:
+- **Add New Task** with title, description, and status inputs
+- Tasks saved automatically to **localStorage**
+- Task list persist accross browser refreshes
+- Tasks displayed under appropriate columns: to Do, Doing, and Done
+- Modal opens on **"+Add New Task"** button click
+- Fully responsive layout via \*\* CSS media queries
+- JSDoc comments included for maintainability
 
-- Learn how to keep UI data in external modules (separation of concerns).
-- Practice **DOM creation** and **querying** with `document.createElement()` and `querySelector()`.
-- Wire up **event listeners** to dynamically created elements.
-- Manage **dialog (`<dialog>`) components** for richer UX.
-- Organise code into small, single‑purpose functions.
+## Technologies Used
 
-## File structure
+- **HTML5** - Page structure
+- **CSS3** - Styling and responsive design
+- **JavaScript** - Dynamic task logic and modal interaction
+- **localStorage API** - Persistant storage in browser
+- **JSDoc** - Code documentation
 
-├── `index.html` # Contains empty column shells & modal markup
+## Challenges faced
 
-├── `styles.css` # Flex layout & dialog styling
+- The modal did not open on the button click initially - solved by ensuring that event listeners were attached inside the DOMContentLoaded event and that the modal element exists in the dom.
+- The **+Add New Task** button disappeared completely on the mobile and tablet media querry - solved by removing the button from the **h2** tag and creating a separate div class for the button(button was nested in the wrong tag and div)
 
-├── `initialData.js` # Array of task objects (id, title, description, status)
+### Unresolved Challenge
 
-├── `scripts.js` # Board initialisation & modal logic
+- **Issue:** In Google Chrome (particularly on mobile view), the status dropdown overlaps the input area instead of appearing below it. However, the same dropdown works correctly in Mozilla Firefox, where it drops down as expected.There are tasks that I added on the task board and they only appear in Chrome and not on Mozilla Firefox,therefore, there is inconsistent Local Storage behavior accross browsers, please see screenshots.  
+- **Status:** This issue is currently unresolved and appears to be browser-specific. Screenshots are included below for reference:
 
-└── `README.md #` ← you are here
+**Chrome:**
+![alt text](image.png)
 
-### `scripts.js` at a glance
+**Mozilla Firefox:**
+![alt text](image-1.png)
 
-| Function                           | Responsibility                                         |
-| ---------------------------------- | ------------------------------------------------------ |
-| `createTaskElement(task)`          | Builds one `.task-div`, binds click handler            |
-| `getTaskContainerByStatus(status)` | Finds the `.tasks-container` inside the correct column |
-| `clearExistingTasks()`             | Empties all columns before re‑rendering                |
-| `renderTasks(tasks)`               | Loops over the dataset and appends each element        |
-| `openTaskModal(task)`              | Prefills and shows the `<dialog>` with task details    |
-| `setupModalCloseHandler()`         | Hooks the **Close** button                             |
-| `initTaskBoard()`                  | Bootstrap: clear → render → hook modal                 |
-
-## Running the solution
+## Setup Instructions
 
 1. **Clone / download** the repo.
 2. Open `index.html` with **Live Server** or any modern browser.
-3. Explore:
-   - Click a task card to open the modal.
 
-## License
+## How to Use
 
-Provided for **educational purposes only**.
+1.  Click on the **"+ Add New Task"** button at the top right corner of the page.
+2.  Fill the modal form with: Title, Description, and Status(todo, doing, or done)
+3.  Click **Create Task** to add the task.
+4.  The task will immediately appear in the appropriate column.
+5.  Tasks are automatically saved in localStorage
+
+P.S I added new tasks on the board to see if I had fulfilled certain user stories.
+
+This project is open for collaboration.My contacts are just below.
+
+## Contact
+
+[Runyararo Marongwe/mrunya87@gmail.com][https://github.com/Rue87]
