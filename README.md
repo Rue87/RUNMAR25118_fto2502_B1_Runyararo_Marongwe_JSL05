@@ -9,9 +9,9 @@ This is a simple Kanban board web application for organizing tasks using status-
 - **Add New Task** with title, description, and status inputs
 - Tasks saved automatically to **localStorage**
 - Task list persist accross browser refreshes
-- Tasks displayed under appropriate columns: to Do, Doing, and Done
+- Tasks displayed under appropriate columns: Todo, Doing, and Done
 - Modal opens on **"+Add New Task"** button click
-- Fully responsive layout via \*\* CSS media queries
+- Fully responsive layout via **CSS** media queries
 - JSDoc comments included for maintainability
 
 ## Technologies Used
@@ -24,12 +24,12 @@ This is a simple Kanban board web application for organizing tasks using status-
 
 ## Challenges faced
 
-- The modal did not open on the button click initially - solved by ensuring that event listeners were attached inside the DOMContentLoaded event and that the modal element exists in the dom.
-- The **+Add New Task** button disappeared completely on the mobile and tablet media querry - solved by removing the button from the **h2** tag and creating a separate div class for the button(button was nested in the wrong tag and div)
+- The modal did not open on the button click initially - solved by ensuring that event listeners were attached inside the DOMContentLoaded event and that the modal element exists in the DOM.
+- The **+Add New Task** button disappeared completely on the mobile and tablet media query - solved by removing the button from the **h2** tag and creating a separate div class for the button(button was nested in the wrong tag and div)
 
 ### Unresolved Challenge
 
-- **Issue:** In Google Chrome (particularly on mobile view), the status dropdown overlaps the input area instead of appearing below it. However, the same dropdown works correctly in Mozilla Firefox, where it drops down as expected.There are tasks that I added on the task board and they only appear in Chrome and not on Mozilla Firefox,therefore, there is inconsistent Local Storage behavior accross browsers, please see screenshots.  
+- **Issue:** In Google Chrome (particularly on mobile view), the status dropdown overlaps the input area instead of appearing below it. However, the same dropdown works correctly in Mozilla Firefox, where it drops down as expected.There are tasks that I added on the task board and they only appear in Chrome and not on Mozilla Firefox,therefore, there is inconsistent Local Storage behavior accross browsers.
 - **Status:** This issue is currently unresolved and appears to be browser-specific. Screenshots are included below for reference:
 
 **Chrome:**
