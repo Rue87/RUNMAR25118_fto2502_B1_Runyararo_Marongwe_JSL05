@@ -129,7 +129,6 @@ header {
   border: none;
   size: 15px;
   font-weight: 700;
-  
 }
 
 .logo-mobile {
@@ -393,10 +392,10 @@ form select {
   }
 
   .header-logo-task-button {
-  display: flex;
-  flex-direction: row;
-  column-gap: 550px;
-}
+    display: flex;
+    flex-direction: row;
+    column-gap: 550px;
+  }
 
   body {
     font-size: 0.8rem;
